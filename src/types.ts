@@ -11,3 +11,8 @@ export interface ErrorMessage {
   code: string
   message: string
 }
+
+export interface ModelDisplayProps {
+  modelName?: string
+  className?: string
+}

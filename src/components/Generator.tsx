@@ -6,7 +6,9 @@ import IconX from './icons/X'
 import Picture from './icons/Picture'
 import MessageItem from './MessageItem'
 import ErrorMessageItem from './ErrorMessageItem'
+import ModelDisplay from './ModelDisplay'
 import type { ChatMessage, ErrorMessage } from '@/types'
+import '@/model-display.css'
 
 export default () => {
   let inputRef: HTMLTextAreaElement
@@ -213,7 +215,7 @@ export default () => {
 
   return (
     <div my-6>
-      {/* beautiful coming soon alert box, position: fixed, screen center, no transparent background, z-index 100*/}
+      {/* beautiful coming soon alert box, position: fixed, screen center, no transparent background, z-index 100 */}
       <Show when={showComingSoon()}>
         <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100">
           <div class="bg-white rounded-md shadow-md p-6">
@@ -277,6 +279,7 @@ export default () => {
           <button title="Clear" onClick={clear} gen-slate-btn>
             <IconClear />
           </button>
+          <ModelDisplay />
         </div>
       </Show>
       {/* <div class="fixed bottom-5 left-5 rounded-md hover:bg-slate/10 w-fit h-fit transition-colors active:scale-90" class:stick-btn-on={isStick()}>
