@@ -2,16 +2,22 @@
 * Model Display
 * -----------------------------------------------------------------------------*/
 
+/* 修改 gen-text-wrapper 以支持模型显示框 */
+.gen-text-wrapper {
+  @apply relative flex-col items-start gap-2;
+}
+
 .model-display {
-  @apply absolute bottom-2 right-2 flex items-center gap-1 text-xs text-gray-500 
-         dark:text-gray-400 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm 
-         px-2 py-1 rounded-full transition-all duration-200 hover:bg-gray-100 
-         dark:hover:bg-gray-700 cursor-default;
-  z-index: 10;
+  @apply absolute -bottom-8 right-0 flex items-center gap-1 text-xs text-gray-500 
+         dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm 
+         px-3 py-1.5 rounded-lg transition-all duration-200 hover:bg-gray-100 
+         dark:hover:bg-gray-700 cursor-default shadow-sm border border-gray-200/50 
+         dark:border-gray-700/50;
+  z-index: 5;
 }
 
 .model-icon {
-  @apply opacity-70;
+  @apply opacity-80 text-sm;
 }
 
 .model-name {
@@ -19,34 +25,73 @@
   white-space: nowrap;
 }
 
+/* 输入框包装器增加底部间距以容纳模型显示 */
+.gen-text-wrapper {
+  margin-bottom: 2rem !important;
+}
+
 /* 响应式适配 */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .model-display {
-    @apply text-[11px] px-1.5 py-0.5;
+    @apply text-[11px] px-2 py-1 -bottom-7;
+  }
+  
+  .model-icon {
+    @apply text-xs;
+  }
+  
+  .gen-text-wrapper {
+    margin-bottom: 1.75rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .model-display {
+    @apply text-[10px] px-1.5 py-0.5 -bottom-6;
   }
   
   .model-icon {
     @apply text-[10px];
   }
+  
+  .gen-text-wrapper {
+    margin-bottom: 1.5rem !important;
+  }
 }
 
 /* 暗色模式优化 */
 .dark .model-display {
-  @apply bg-gray-800/90;
+  @apply bg-gray-800/95 border-gray-700/70;
 }
 
 /* 动画效果 */
 .model-display {
-  animation: fadeIn 0.3s ease-in-out;
+  animation: slideUpFade 0.4s ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes slideUpFade {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* 加载状态时的样式调整 */
+.gen-cb-wrapper ~ .model-display {
+  @apply hidden;
+}
+
+/* 确保在移动设备上的可点击区域 */
+.model-display {
+  min-height: 24px;
+  min-width: fit-content;
+}
+
+/* 平滑过渡效果 */
+.model-display {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
