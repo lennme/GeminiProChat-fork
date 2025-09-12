@@ -18,6 +18,20 @@ const ModelDisplay = (props: ModelDisplayProps) => {
     return model.replace(/^gemini-/, '').replace(/-/g, ' ')
   }
 
+  const isInlineMode = props.inlineMode || false
+
+  if (isInlineMode) {
+    return (
+      <div
+        class={`model-display-inline ${props.className || ''}`}
+        title={`当前使用的模型: ${getModelName()}`}
+      >
+        <span class="model-icon-inline">🤖</span>
+        <span class="model-name-inline">{getDisplayName()}</span>
+      </div>
+    )
+  }
+
   return (
     <div
       class={`model-display ${props.className || ''}`}

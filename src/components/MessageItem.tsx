@@ -75,7 +75,19 @@ export default ({ role, message, showRetry, onRetry }: Props) => {
         <div class="message prose break-words overflow-hidden" innerHTML={htmlString()} />
       </div>
       {showRetry?.() && onRetry && (
-        <div class="fie px-3 mb-2">
+        <div class="fie px-3 mb-2 flex items-center gap-2">
+          <div class="model-name-with-regenerate">
+            🤖 <span class="text-xs text-gray-600 dark:text-gray-400 font-medium select-none">
+              {(() => {
+                const modelName = import.meta.env.GEMINI_MODEL_NAME || 'gemini-2.5-flash'
+                if (modelName.includes('gemini-2.5-flash')) return 'Gemini 2.5 Flash'
+                if (modelName.includes('gemini-2.0-flash')) return 'Gemini 2.0 Flash'
+                if (modelName.includes('gemini-1.5-pro')) return 'Gemini 1.5 Pro'
+                if (modelName.includes('gemini-pro')) return 'Gemini Pro'
+                return modelName.replace(/^gemini-/, '').replace(/-/g, ' ')
+              })()}
+            </span>
+          </div>
           <div onClick={onRetry} class="gpt-retry-btn">
             <IconRefresh />
             <span>Regenerate</span>

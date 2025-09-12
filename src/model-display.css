@@ -88,3 +88,35 @@
     margin-left: 0.25rem;
   }
 }
+
+/* 内联模式样式 - 用于与Regenerate按钮并排显示 */
+.model-display-inline {
+  @apply flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 
+         px-1.5 py-0.5 rounded transition-all duration-200 mr-2;
+  z-index: 5;
+}
+
+.model-icon-inline {
+  @apply opacity-80 text-xs;
+}
+
+.model-name-inline {
+  @apply font-medium text-xs select-none;
+  white-space: nowrap;
+}
+
+/* 响应式适配 - 内联模式 */
+@media (max-width: 640px) {
+  .model-display-inline {
+    @apply text-[10px] px-1 py-0.5;
+  }
+  
+  .model-icon-inline {
+    @apply text-[9px];
+  }
+}
+
+/* 暗色模式优化 - 内联模式 */
+.dark .model-display-inline {
+  @apply text-gray-400;
+}

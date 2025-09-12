@@ -15,4 +15,5 @@ export interface ErrorMessage {
 export interface ModelDisplayProps {
   modelName?: string
   className?: string
+  inlineMode?: boolean
 }

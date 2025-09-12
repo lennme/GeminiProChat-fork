@@ -279,7 +279,6 @@ export default () => {
           <button title="Clear" onClick={clear} gen-slate-btn>
             <IconClear />
           </button>
-          <ModelDisplay />
         </div>
       </Show>
       {/* <div class="fixed bottom-5 left-5 rounded-md hover:bg-slate/10 w-fit h-fit transition-colors active:scale-90" class:stick-btn-on={isStick()}>
