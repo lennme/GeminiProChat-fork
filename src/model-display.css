@@ -2,22 +2,21 @@
 * Model Display
 * -----------------------------------------------------------------------------*/
 
-/* 修改 gen-text-wrapper 以支持模型显示框 */
+/* 模型显示框容器 - 保持原始 gen-text-wrapper 不变 */
 .gen-text-wrapper {
-  @apply relative flex-col items-start gap-2;
+  @apply relative my-4 fc gap-2 transition-opacity;
 }
 
 .model-display {
-  @apply absolute -bottom-8 right-0 flex items-center gap-1 text-xs text-gray-500 
-         dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm 
-         px-3 py-1.5 rounded-lg transition-all duration-200 hover:bg-gray-100 
-         dark:hover:bg-gray-700 cursor-default shadow-sm border border-gray-200/50 
-         dark:border-gray-700/50;
-  z-index: 5;
+  @apply absolute bottom-2 left-2 flex items-center gap-1 text-xs text-gray-500 
+         dark:text-gray-400 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm 
+         px-2 py-1 rounded-full transition-all duration-200 hover:bg-gray-100 
+         dark:hover:bg-gray-700 cursor-default;
+  z-index: 10;
 }
 
 .model-icon {
-  @apply opacity-80 text-sm;
+  @apply opacity-70;
 }
 
 .model-name {
@@ -25,58 +24,41 @@
   white-space: nowrap;
 }
 
-/* 输入框包装器增加底部间距以容纳模型显示 */
-.gen-text-wrapper {
-  margin-bottom: 2rem !important;
-}
-
 /* 响应式适配 */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .model-display {
-    @apply text-[11px] px-2 py-1 -bottom-7;
-  }
-  
-  .model-icon {
-    @apply text-xs;
-  }
-  
-  .gen-text-wrapper {
-    margin-bottom: 1.75rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .model-display {
-    @apply text-[10px] px-1.5 py-0.5 -bottom-6;
+    @apply text-[11px] px-1.5 py-0.5 bottom-1.5 left-1.5;
   }
   
   .model-icon {
     @apply text-[10px];
   }
-  
-  .gen-text-wrapper {
-    margin-bottom: 1.5rem !important;
+}
+
+@media (max-width: 480px) {
+  .model-display {
+    @apply text-[10px] px-1 py-0.5 bottom-1 left-1;
   }
 }
 
 /* 暗色模式优化 */
 .dark .model-display {
-  @apply bg-gray-800/95 border-gray-700/70;
+  @apply bg-gray-800/90;
 }
 
 /* 动画效果 */
 .model-display {
-  animation: slideUpFade 0.4s ease-out;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-@keyframes slideUpFade {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateX(-8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
@@ -87,11 +69,22 @@
 
 /* 确保在移动设备上的可点击区域 */
 .model-display {
-  min-height: 24px;
+  min-height: 20px;
   min-width: fit-content;
 }
 
 /* 平滑过渡效果 */
 .model-display {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 与图片按钮的间距协调 */
+.model-display {
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .model-display {
+    margin-left: 0.25rem;
+  }
 }

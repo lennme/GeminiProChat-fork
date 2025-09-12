@@ -257,32 +257,28 @@ export default () => {
         )}
       >
         <div class="gen-text-wrapper">
-          <div class="relative flex gap-2">
-            <button title="Picture" onClick={handlePictureUpload} class="absolute left-1rem top-50% translate-y-[-50%] z-10">
-              <Picture />
-            </button>
-            <textarea
-              ref={inputRef!}
-              onKeyDown={handleKeydown}
-              placeholder="Enter something..."
-              autocomplete="off"
-              autofocus
-              onInput={() => {
-                inputRef.style.height = 'auto'
-                inputRef.style.height = `${inputRef.scrollHeight}px`
-              }}
-              rows="1"
-              class="gen-textarea"
-            />
-            <div class="flex gap-2 items-start">
-              <button onClick={handleButtonClick} gen-slate-btn>
-                Send
-              </button>
-              <button title="Clear" onClick={clear} gen-slate-btn>
-                <IconClear />
-              </button>
-            </div>
-          </div>
+          <button title="Picture" onClick={handlePictureUpload} class="absolute left-1rem top-50% translate-y-[-50%]">
+            <Picture />
+          </button>
+          <textarea
+            ref={inputRef!}
+            onKeyDown={handleKeydown}
+            placeholder="Enter something..."
+            autocomplete="off"
+            autofocus
+            onInput={() => {
+              inputRef.style.height = 'auto'
+              inputRef.style.height = `${inputRef.scrollHeight}px`
+            }}
+            rows="1"
+            class="gen-textarea"
+          />
+          <button onClick={handleButtonClick} gen-slate-btn>
+            Send
+          </button>
+          <button title="Clear" onClick={clear} gen-slate-btn>
+            <IconClear />
+          </button>
           <ModelDisplay />
         </div>
       </Show>
